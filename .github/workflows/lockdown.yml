@@ -1,0 +1,21 @@
+name: 'Lock down repository'
+
+on:
+  issues:
+    types: opened
+  pull_request:
+    types: opened
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  lockdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/repo-lockdown@v2
+        with:
+          github-token: ${{ secrets.ROBOT_TOKEN }}
+          pr-comment: >
+            This repository does not accept pull requests, as it is a read-only mirror of [dothq/browser-desktop](https://github.com/dothq/browser-desktop). 
+            
+            If you want to contribute to Dot Browser, please consider making your pull request in [dothq/browser-desktop](https://github.com/dothq/browser-desktop).
