@@ -2544,7 +2544,6 @@ pref("general.autoScroll", true);
 pref("browser.preferences.experimental.hidden", true);
 pref("browser.preferences.experimental", false);
 pref("app.feedback.baseURL", "https://services.dothq.co/feedback/send?product=dot&version=%VERSION%&channel=unknown");
-pref("browser.toolbars.bookmarks.visibility", "never");
 
 // Network
 pref("dom.security.https_only_mode", true); // Enable HTTPS-only mode
