@@ -51,7 +51,6 @@ const LIGHT_WEIGHT_THEMES = {
   DARK: "dark@themes.dothq.co",
   LIGHT: "light@themes.dothq.co",
   AUTOMATIC: "dynamic@themes.dothq.co",
-  ALPENGLOW: "firefox-alpenglow@mozilla.org",
 };
 
 async function getImportableSites() {

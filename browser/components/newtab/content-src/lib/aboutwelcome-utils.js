@@ -205,18 +205,6 @@ export const DEFAULT_WELCOME_CONTENT = {
                 string_id: "onboarding-multistage-theme-description-dark",
               },
             },
-            {
-              theme: "alpenglow",
-              label: {
-                string_id: "onboarding-multistage-theme-label-alpenglow",
-              },
-              tooltip: {
-                string_id: "onboarding-multistage-theme-tooltip-alpenglow-2",
-              },
-              description: {
-                string_id: "onboarding-multistage-theme-description-alpenglow",
-              },
-            },
           ],
         },
         primary_button: {

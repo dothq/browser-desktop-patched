@@ -2,14 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  addUtmParams, BASE_PARAMS
+} from "../../asrouter/templates/FirstRun/addUtmParams";
+import { AboutWelcomeUtils } from "../../lib/aboutwelcome-utils";
 import { Localized } from "./MSLocalized";
 import { Zap } from "./Zap";
-import { AboutWelcomeUtils } from "../../lib/aboutwelcome-utils";
-import {
-  BASE_PARAMS,
-  addUtmParams,
-} from "../../asrouter/templates/FirstRun/addUtmParams";
 
 export const MultiStageAboutWelcome = props => {
   const [index, setScreenIndex] = useState(0);
