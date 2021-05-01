@@ -229,7 +229,7 @@
 
     <menupopup id="new-tab-button-popup"
                onpopupshowing="return CreateContainerTabMenu(event);"
-               onclick="checkForMiddleClick(this, eventom);"/>
+               onclick="checkForMiddleClick(this, event);"/>
     <!-- for search and content formfill/pw manager -->
 
     <panel is="autocomplete-richlistbox-popup"
@@ -787,7 +787,7 @@
         <toolbarseparator id="appMenu-tp-separator" hidden="true"/>
         <toolbarbutton id="appMenu-new-tab-button"
                        class="subviewbutton subviewbutton-iconic"
-                       label="&newTabCmd.label;"
+                       label="&tabCmd.label;"
                        key="key_newNavigatorTab"
                        oncommand="BrowserOpenTab()"/>
         <toolbarbutton id="appMenu-new-window-button"
