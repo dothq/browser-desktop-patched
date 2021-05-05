@@ -1352,7 +1352,7 @@ BrowserPageActions.shareURL = {
       PanelMultiView.hidePopup(BrowserPageActions.panelNode);
     };
 
-    shareProviders.forEach(function(share) {
+    shareProviders.forEach(function (share) {
       let item = document.createXULElement("toolbarbutton");
       item.setAttribute("label", share.menuItemTitle);
       item.setAttribute("share-name", share.name);
@@ -1377,6 +1377,26 @@ BrowserPageActions.shareURL = {
     }
     bodyNode.appendChild(fragment);
     this._cached = true;
+  },
+};
+
+// generate QR code for site
+BrowserPageActions.generateQrCode = {
+  get panel() {
+    return document.getElementById("qrCodePanel")
+  },
+
+  onShowingInPanel(buttonNode) {
+    console.log("showing in panel")
+  },
+
+  onCommand(event, buttonNode) {
+    PanelMultiView.hidePopup(BrowserPageActions.panelNode);
+    this.panel.openPopupAtScreen(
+      200,
+      100,
+      false
+    );
   },
 };
 

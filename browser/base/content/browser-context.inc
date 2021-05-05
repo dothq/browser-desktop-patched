@@ -226,6 +226,11 @@
                 oncommand="gContextMenu.savePageAs();"
                 class="menuitem-iconic"
                 image="chrome://browser/skin/save.svg"/>
+      <menuitem id="context-generateqrcode"
+                data-l10n-id="main-context-menu-page-qr-generate"
+                oncommand="gContextMenu.generateQrCode();"
+                class="menuitem-iconic"
+                image="chrome://browser/skin/qr-code.svg"/>
       <menuitem id="context-pocket"
                 data-l10n-id="main-context-menu-save-to-pocket"
                 oncommand="Pocket.savePage(gContextMenu.browser, gContextMenu.browser.currentURI.spec, gContextMenu.browser.contentTitle);"/>

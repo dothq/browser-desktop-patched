@@ -232,8 +232,8 @@ var PageActions = {
       let index = !action.__insertBeforeActionID
         ? -1
         : this._builtInActions.findIndex(a => {
-            return a.id == action.__insertBeforeActionID;
-          });
+          return a.id == action.__insertBeforeActionID;
+        });
       if (index < 0) {
         // Append the action (excluding transient actions).
         index = this._builtInActions.filter(a => !a.__transient).length;
@@ -366,7 +366,7 @@ var PageActions = {
     try {
       let json = Services.prefs.getStringPref(PREF_PERSISTED_ACTIONS);
       this._persistedActions = this._migratePersistedActions(JSON.parse(json));
-    } catch (ex) {}
+    } catch (ex) { }
   },
 
   _purgeUnregisteredPersistedActions() {
@@ -1130,7 +1130,7 @@ Action.prototype = {
   },
 
   get _isBuiltIn() {
-    let builtInIDs = ["pocket", "screenshots_mozilla_org"].concat(
+    let builtInIDs = ["pocket", "screenshots_mozilla_org", "qr_dothq_co"].concat(
       gBuiltInActions.filter(a => !a.__isSeparator).map(a => a.id)
     );
     return builtInIDs.includes(this.id);
