@@ -1747,7 +1747,7 @@ pref("browser.contentblocking.customBlockList.preferences.ui.enabled", false);
 pref("browser.contentblocking.reportBreakage.url", "https://tracking-protection-issues.herokuapp.com/new");
 
 // Enable Protections report's Lockwise card by default.
-pref("browser.contentblocking.report.lockwise.enabled", true);
+pref("browser.contentblocking.report.lockwise.enabled", false);
 
 // Enable Protections report's Monitor card by default.
 pref("browser.contentblocking.report.monitor.enabled", true);
