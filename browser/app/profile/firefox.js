@@ -1747,7 +1747,7 @@ pref("browser.contentblocking.customBlockList.preferences.ui.enabled", false);
 pref("browser.contentblocking.reportBreakage.url", "https://tracking-protection-issues.herokuapp.com/new");
 
 // Enable Protections report's Lockwise card by default.
-pref("browser.contentblocking.report.lockwise.enabled", false);
+pref("browser.contentblocking.report.lockwise.enabled", true);
 
 // Enable Protections report's Monitor card by default.
 pref("browser.contentblocking.report.monitor.enabled", true);
@@ -2628,3 +2628,6 @@ pref("layout.css.backdrop-filter.enabled", true);
 pref("gfx.webrender.all", true);
 pref("browser.tabs.drawInTitlebar", true);
 pref("browser.toolbars.bookmarks.visibility", "never");
+
+// Firefox Services
+pref("browser.contentblocking.report.lockwise.enabled", false);
