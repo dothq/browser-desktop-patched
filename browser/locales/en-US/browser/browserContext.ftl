@@ -67,11 +67,6 @@ main-context-menu-page-save =
     .label = Save Page As…
     .accesskey = P
 
-## Make QR Code with page URL
-
-main-context-menu-page-qr-generate =
-    .label = Generate QR Code for Page…
-
 ## Simple menu items
 
 main-context-menu-bookmark-add =
