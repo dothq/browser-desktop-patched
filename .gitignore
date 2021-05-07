@@ -171,33 +171,3 @@ testing/raptor/webext/raptor/auto_gen_test_config.js
 
 
 # Imported files*.rej
-browser/branding/dot
-browser/themes/shared/dotui
-browser/themes/windows/dotui
-browser/themes/osx/dotui
-browser/themes/linux/dotui
-browser/components/abouthistory
-browser/locales/en-US/browser/aboutHistory.ftl
-browser/actors/AboutHistoryChild.jsm
-browser/actors/AboutHistoryParent.jsm
-browser/components/preferences/new
-toolkit/components/dotprotocol
-browser/components/search/extensions/ddg
-browser/components/search/extensions/ecosia
-browser/components/search/extensions/bing
-browser/components/search/extensions/google
-browser/components/search/extensions/qwant
-browser/components/search/extensions/startpage
-toolkit/mozapps/extensions/default-theme
-browser/themes/addons/fusion
-browser/themes/addons/light
-browser/themes/addons/dark
-toolkit/mozapps/extensions/content/default-theme.svg
-toolkit/mozapps/extensions/content/firefox-compact-dark.svg
-toolkit/mozapps/extensions/content/firefox-compact-light.svg
-toolkit/mozapps/extensions/content/firefox-compact-fusion.svg
-browser/themes/shared/icons/spell-check.svg
-browser/themes/shared/icons/qr-code.svg
-browser/extensions/shield
-browser/extensions/qrcodes
-browser/locales/en-US/browser/qr-codes.ftl
