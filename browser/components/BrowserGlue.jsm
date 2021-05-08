@@ -2304,6 +2304,22 @@ BrowserGlue.prototype = {
     Services.wm.addListener(windowListener);
   },
 
+  _monitorQrCodesPref() {
+    const PREF = "browser.qrcodes.enabled";
+    const ID = "qr@dothq.co";
+    const _checkQrCodesPref = async () => {
+      let addon = await AddonManager.getAddonByID(ID);
+      let enabled = Services.prefs.getBoolPref(PREF, true);
+      if (enabled && !addon.isActive) {
+        await addon.enable({ allowSystemAddons: true });
+      } else if (!enabled && addon.isActive) {
+        await addon.disable({ allowSystemAddons: true });
+      }
+    };
+    Services.prefs.addObserver(PREF, _checkQrCodesPref);
+    _checkQrCodesPref();
+  },
+
   _showNewInstallModal() {
     // Allow other observers of the same topic to run while we open the dialog.
     Services.tm.dispatchToMainThread(() => {
@@ -2396,6 +2412,7 @@ BrowserGlue.prototype = {
     this._monitorHTTPSOnlyPref();
     this._monitorIonPref();
     this._monitorIonStudies();
+    this._monitorQrCodesPref();
 
     let pService = Cc["@mozilla.org/toolkit/profile-service;1"].getService(
       Ci.nsIToolkitProfileService

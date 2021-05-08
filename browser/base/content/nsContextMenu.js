@@ -669,8 +669,10 @@ class nsContextMenu {
     this.showItem(
       "context-generateqrcode",
       shouldShow &&
-      !this.contentData.documentURIObject.schemeIs("about"),
-      Services.prefs.getBoolPref("browser.qrcode.enabled", true)
+      this.inTabBrowser &&
+      !this.inFrame &&
+      !this.contentData.documentURIObject.schemeIs("about") &&
+      Services.prefs.getBoolPref("browser.qrcodes.enabled", true)
     );
   }
 
@@ -2143,8 +2145,12 @@ class nsContextMenu {
     this.actor.doCustomCommand(generatedItemId, handlingUserInput);
   }
 
-  generateQrCode() {
-    console.log(this.browser.currentURI);
+  generateQrCode(aEvent) {
+    const action = PageActions.actionForID('qr_dothq_co');
+
+    if (action) {
+      BrowserPageActions.doCommandForAction(action, aEvent, this);
+    }
   }
 }
 

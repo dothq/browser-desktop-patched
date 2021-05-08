@@ -228,7 +228,7 @@
                 image="chrome://browser/skin/save.svg"/>
       <menuitem id="context-generateqrcode"
                 data-l10n-id="main-context-menu-page-qr-generate"
-                oncommand="gContextMenu.generateQrCode();"
+                oncommand="gContextMenu.generateQrCode(event);"
                 class="menuitem-iconic"
                 image="chrome://browser/skin/qr-code.svg"/>
       <menuitem id="context-pocket"
