@@ -265,7 +265,7 @@ var gIdentityHandler = {
   get _identityPopupContentVerif() {
     delete this._identityPopupContentVerif;
     return (this._identityPopupContentVerif = document.getElementById(
-      "identity-popup-content-verifier"
+      "identity-popup-section-subtitle"
     ));
   },
   get _identityPopupCustomRootLearnMore() {
@@ -300,7 +300,7 @@ var gIdentityHandler = {
   get _popupExpander() {
     delete this._popupExpander;
     return (this._popupExpander = document.getElementById(
-      "identity-popup-security-expander"
+      "identity-popup-certificate-expander"
     ));
   },
   get _clearSiteDataFooter() {
@@ -603,7 +603,7 @@ var gIdentityHandler = {
     // SubjectName fields, broken up for individual access
     if (cert.subjectName) {
       result.subjectNameFields = {};
-      cert.subjectName.split(",").forEach(function(v) {
+      cert.subjectName.split(",").forEach(function (v) {
         var field = v.split("=");
         this[field[0]] = field[1];
       }, result.subjectNameFields);
@@ -1114,9 +1114,14 @@ var gIdentityHandler = {
       [owner]
     );
 
+    document.l10n.setAttributes(
+      this._identityPopupContentVerif,
+      "identity-certificate-issuer",
+      { certIssuer: verifier.split(": ")[1] || "" }
+    );
+
     this._identityPopupContentOwner.textContent = owner;
     this._identityPopupContentSupp.textContent = supplemental;
-    this._identityPopupContentVerif.textContent = verifier;
   },
 
   setURI(uri) {

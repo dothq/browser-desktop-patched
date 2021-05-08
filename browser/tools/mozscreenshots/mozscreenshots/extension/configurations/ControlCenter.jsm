@@ -38,7 +38,7 @@ const MIXED_PASSIVE_CONTENT_URL = `https://example.com/${RESOURCE_PATH}/mixed_pa
 const TRACKING_PAGE = `http://tracking.example.org/${RESOURCE_PATH}/tracking.html`;
 
 var ControlCenter = {
-  init(libDir) {},
+  init(libDir) { },
 
   configurations: {
     about: {
@@ -126,7 +126,7 @@ var ControlCenter = {
         let principal = Services.scriptSecurityManager.createContentPrincipalFromOrigin(
           PERMISSIONS_PAGE
         );
-        SitePermissions.listPermissions().forEach(function(permission, index) {
+        SitePermissions.listPermissions().forEach(function (permission, index) {
           SitePermissions.setForPrincipal(
             principal,
             permission,
@@ -309,7 +309,7 @@ async function openIdentityPopup(expand) {
     // give some time for opening to avoid weird style issues
     await new Promise(c => setTimeout(c, 500));
     gIdentityHandler._identityPopup
-      .querySelector("#identity-popup-security-expander")
+      .querySelector("#identity-popup-certificate")
       .click();
   }
 }
