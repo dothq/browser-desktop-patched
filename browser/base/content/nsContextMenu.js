@@ -632,7 +632,8 @@ class nsContextMenu {
     this.setItemAttr(
       "context-viewinfo",
       "disabled",
-      this.webExtBrowserType === "popup"
+      this.webExtBrowserType === "popup" ||
+      gIdentityHandler._hasInvalidPageProxyState()
     );
     this.showItem("inspect-separator", showInspect);
     this.showItem("context-inspect", showInspect);
