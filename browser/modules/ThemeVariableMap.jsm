@@ -173,6 +173,13 @@ const ThemeVariableMap = [
       optionalElementID: "browser",
     },
   ],
+  [
+    "--sidebar-highlight-color",
+    {
+      lwtProperty: "sidebar_highlight",
+      optionalElementID: "sidebar-iconbar",
+    },
+  ],
 ];
 
 const ThemeContentPropertyList = [

@@ -170,6 +170,9 @@
                               type="checkbox"
                               class="sync-ui-item"
                               oncommand="SidebarUI.toggle('viewTabsSidebar');" data-l10n-id="menu-view-synced-tabs-sidebar"/>
+                    <menuitem id="menu_accountsSidebar"
+                              type="checkbox"
+                              oncommand="SidebarUI.toggle('viewAccountsSidebar');" data-l10n-id="menu-view-accounts"/>
                   </menupopup>
                 </menu>
                 <menuseparator/>

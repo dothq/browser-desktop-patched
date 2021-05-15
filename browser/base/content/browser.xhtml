@@ -407,23 +407,6 @@
            flip="slide"
            orient="vertical"
            position="bottomcenter topleft">
-      <toolbarbutton id="sidebar-switcher-bookmarks"
-                     type="checkbox"
-                     data-l10n-id="sidebar-menu-bookmarks"
-                     class="subviewbutton subviewbutton-iconic"
-                     key="viewBookmarksSidebarKb"
-                     oncommand="SidebarUI.show('viewBookmarksSidebar');"/>
-      <toolbarbutton id="sidebar-switcher-history"
-                     type="checkbox"
-                     data-l10n-id="sidebar-menu-history"
-                     class="subviewbutton subviewbutton-iconic"
-                     key="key_gotoHistory"
-                     oncommand="SidebarUI.show('viewHistorySidebar');"/>
-      <toolbarbutton id="sidebar-switcher-tabs"
-                     type="checkbox"
-                     data-l10n-id="sidebar-menu-synced-tabs"
-                     class="subviewbutton subviewbutton-iconic sync-ui-item"
-                     oncommand="SidebarUI.show('viewTabsSidebar');"/>
       <toolbarseparator/>
       <!-- Extension toolbarbuttons go here. -->
       <toolbarseparator id="sidebar-extensions-separator"/>
@@ -555,6 +538,21 @@
     </menupopup>
 
 #include ../../components/places/content/placesContextMenu.inc.xhtml
+
+    <menupopup id="sidebar-context-menu">
+      <menuitem class="menuitem-iconic"
+                observes="cmd_CustomizeToolbars"
+                data-lazy-l10n-id="toolbar-context-menu-view-customize-toolbar"
+                image="chrome://browser/skin/customize.svg"
+      />
+    </menupopup>
+
+    <menupopup id="sidebar-item-context-menu">
+      <menuitem class="menuitem-iconic"
+                data-l10n-id="sidebar-context-menu-remove-item"
+                image="chrome://global/skin/icons/delete.svg"
+      />
+    </menupopup>
 
     <panel id="ctrlTab-panel" hidden="true" norestorefocus="true" level="top">
       <hbox id="ctrlTab-previews"/>
@@ -2382,6 +2380,44 @@
   </box>
 
   <hbox flex="1" id="browser">
+    <vbox id="sidebar-iconbar" hidden="true" context="sidebar-context-menu">
+      <vbox class="sidebar-iconbar-container">
+        <toolbarbutton id="sidebar-switcher-bookmarks"
+              class="sidebar-iconbar-item" 
+              oncommand="SidebarUI.toggle('viewBookmarksSidebar');"
+              context="sidebar-item-context-menu"
+              data-l10n-id="sidebar-menu-bookmarks"
+        />
+        <toolbarbutton id="sidebar-switcher-history"
+              class="sidebar-iconbar-item"
+              oncommand="SidebarUI.toggle('viewHistorySidebar');"
+              context="sidebar-item-context-menu"
+              data-l10n-id="sidebar-menu-history"
+        />
+        <toolbarbutton id="sidebar-switcher-tabs"
+              class="sidebar-iconbar-item"
+              oncommand="SidebarUI.toggle('viewTabsSidebar');"
+              context="sidebar-item-context-menu"
+              data-l10n-id="sidebar-menu-synced-tabs"
+        />
+      </vbox>
+
+      <vbox class="sidebar-iconbar-container">
+        <toolbarbutton id="sidebar-switcher-accounts"
+              class="sidebar-iconbar-item" 
+              oncommand="SidebarUI.toggle('viewAccountsSidebar');"
+              context="sidebar-item-context-menu"
+              data-l10n-id="sidebar-menu-accounts"
+        />
+        <toolbarbutton id="sidebar-switcher-settings"
+              class="sidebar-iconbar-item" 
+              oncommand="openPreferences();"
+              context="sidebar-item-context-menu"
+              data-l10n-id="sidebar-menu-settings"
+        />
+      </vbox>
+    </vbox>
+
     <vbox id="sidebar-box" hidden="true" class="chromeclass-extrachrome">
       <box id="sidebar-header" align="center">
         <toolbarbutton id="sidebar-switcher-target" flex="1" class="tabbable">
@@ -2398,7 +2434,7 @@
         <toolbarbutton id="sidebar-close" class="close-icon tabbable" tooltiptext="&sidebarCloseButton.tooltip;" oncommand="SidebarUI.hide();"/>
       </box>
       <browser id="sidebar" flex="1" autoscroll="false" disablehistory="true" disablefullscreen="true"
-                style="min-width: 14em; width: 18em; max-width: 36em;" tooltip="aHTMLTooltip"/>
+                style="min-width: 14em; width: 24em; max-width: 36em;" tooltip="aHTMLTooltip"/>
     </vbox>
 
     <splitter id="sidebar-splitter" class="chromeclass-extrachrome sidebar-splitter" hidden="true"/>

@@ -2631,3 +2631,10 @@ pref("browser.toolbars.bookmarks.visibility", "never");
 
 // Firefox Services
 pref("browser.contentblocking.report.lockwise.enabled", false);
+
+// Sidebar
+pref("sidebar.disabled", false);
+pref("sidebar.pinned", false);
+pref("sidebar.selected", "");
+pref("sidebar.startItems", "");
+pref("sidebar.endItems", "");

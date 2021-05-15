@@ -187,17 +187,17 @@ this.sidebarAction = class extends ExtensionAPI {
     toolbarbutton.setAttribute("id", this.buttonId);
     toolbarbutton.setAttribute("type", "checkbox");
     toolbarbutton.setAttribute("label", details.title);
-    toolbarbutton.setAttribute("oncommand", `SidebarUI.show("${this.id}");`);
+    toolbarbutton.setAttribute("oncommand", `SidebarUI.toggle("${this.id}");`);
     toolbarbutton.setAttribute(
       "class",
-      "subviewbutton subviewbutton-iconic webextension-menuitem"
+      "sidebar-iconbar-item-ext sidebar-iconbar-item"
     );
     toolbarbutton.setAttribute("key", keyId);
     this.setMenuIcon(toolbarbutton, details);
 
     document.getElementById("viewSidebarMenu").appendChild(menuitem);
-    let separator = document.getElementById("sidebar-extensions-separator");
-    separator.parentNode.insertBefore(toolbarbutton, separator);
+    let iconBar = document.getElementById("sidebar-iconbar");
+    iconBar.childNodes[0].appendChild(toolbarbutton);
     SidebarUI.updateShortcut({ button: toolbarbutton });
 
     return menuitem;

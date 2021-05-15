@@ -14,8 +14,7 @@ var SidebarUI = {
       [
         "viewBookmarksSidebar",
         {
-          title: document
-            .getElementById("sidebar-switcher-bookmarks")
+          title: document.getElementById("sidebar-switcher-bookmarks")
             .getAttribute("label"),
           url: "chrome://browser/content/places/bookmarksSidebar.xhtml",
           menuId: "menu_bookmarksSidebar",
@@ -25,8 +24,7 @@ var SidebarUI = {
       [
         "viewHistorySidebar",
         {
-          title: document
-            .getElementById("sidebar-switcher-history")
+          title: document.getElementById("sidebar-switcher-history")
             .getAttribute("label"),
           url: "chrome://browser/content/places/historySidebar.xhtml",
           menuId: "menu_historySidebar",
@@ -37,13 +35,22 @@ var SidebarUI = {
       [
         "viewTabsSidebar",
         {
-          title: document
-            .getElementById("sidebar-switcher-tabs")
+          title: document.getElementById("sidebar-switcher-tabs")
             .getAttribute("label"),
           url: "chrome://browser/content/syncedtabs/sidebar.xhtml",
           menuId: "menu_tabsSidebar",
           buttonId: "sidebar-switcher-tabs",
           triggerButtonId: "PanelUI-remotetabs-view-sidebar",
+        },
+      ],
+      [
+        "viewAccountsSidebar",
+        {
+          title: document.getElementById("sidebar-switcher-accounts")
+            .getAttribute("label"),
+          url: "about:profiles",
+          menuId: "menu_accountsSidebar",
+          buttonId: "sidebar-switcher-accounts"
         },
       ],
     ]));
@@ -65,6 +72,7 @@ var SidebarUI = {
   lastOpenedId: null,
 
   _box: null,
+  _iconBar: null,
   // The constructor of this label accesses the browser element due to the
   // control="sidebar" attribute, so avoid getting this label during startup.
   get _title() {
@@ -93,6 +101,7 @@ var SidebarUI = {
 
   init() {
     this._box = document.getElementById("sidebar-box");
+    this._iconBar = document.getElementById("sidebar-iconbar");
     this._splitter = document.getElementById("sidebar-splitter");
     this._icon = document.getElementById("sidebar-icon");
     this._reversePositionButton = document.getElementById(
@@ -285,8 +294,14 @@ var SidebarUI = {
       return true;
     }
 
+    console.log(sourceUI._box, sourceUI._box.getBoundingClientRect().width)
+
     this._box.setAttribute(
       "width",
+      sourceUI._box.getBoundingClientRect().width
+    );
+    this._box.setAttribute(
+      "--sidebar-width",
       sourceUI._box.getBoundingClientRect().width
     );
     this.showInitially(commandID);
@@ -455,11 +470,15 @@ var SidebarUI = {
     return this._show(commandID).then(() => {
       this._loadSidebarExtension(commandID);
 
+      this.ensureTooltipSet();
+
       if (triggerNode) {
         updateToggleControlLabel(triggerNode);
       }
 
       this._fireFocusedEvent();
+
+      this._box.style.marginLeft = ``;
       return true;
     });
   },
@@ -498,7 +517,13 @@ var SidebarUI = {
     return new Promise(resolve => {
       this.selectMenuItem(commandID);
 
+      let { url, title } = this.sidebars.get(commandID);
+      this.title = title;
+      this.browser.style.backgroundColor = "var(--sidebar-background-color)";
+      this.browser.setAttribute("src", url); // kick off async load
+
       this._box.hidden = this._splitter.hidden = false;
+      this._iconBar.hidden = this._splitter.hidden = false;
       this.setPosition();
 
       this.hideSwitcherPanel();
@@ -506,10 +531,6 @@ var SidebarUI = {
       this._box.setAttribute("checked", "true");
       this._box.setAttribute("sidebarcommand", commandID);
       this.lastOpenedId = commandID;
-
-      let { url, title } = this.sidebars.get(commandID);
-      this.title = title;
-      this.browser.setAttribute("src", url); // kick off async load
 
       if (this.browser.contentDocument.location.href != url) {
         this.browser.addEventListener(
@@ -550,16 +571,23 @@ var SidebarUI = {
 
     this.selectMenuItem("");
 
+    this._box.removeAttribute("checked");
+
+    this._box.style.marginLeft = `${-Math.abs(this._box.getBoundingClientRect().width)}px`
+
+    setTimeout(() => {
+      this._box.hidden = this._splitter.hidden = true;
+      this._iconBar.hidden = this._splitter.hidden = true;
+    }, 170);
+
     // Replace the document currently displayed in the sidebar with about:blank
     // so that we can free memory by unloading the page. We need to explicitly
     // create a new content viewer because the old one doesn't get destroyed
     // until about:blank has loaded (which does not happen as long as the
     // element is hidden).
+    this.browser.style.backgroundColor = "var(--sidebar-background-color)";
     this.browser.setAttribute("src", "about:blank");
     this.browser.docShell.createAboutBlankContentViewer(null, null);
-
-    this._box.removeAttribute("checked");
-    this._box.hidden = this._splitter.hidden = true;
 
     let selBrowser = gBrowser.selectedBrowser;
     selBrowser.focus();
@@ -595,6 +623,15 @@ var SidebarUI = {
       }
     }
   },
+
+  ensureTooltipSet() {
+    for (let [id, { title, buttonId }] of this.sidebars) {
+      let button = document.getElementById(buttonId);
+
+      button.setAttribute("tooltiptext", title);
+      button.setAttribute("context", "sidebar-item-context-menu");
+    };
+  }
 };
 
 // Add getters related to the position here, since we will want them
