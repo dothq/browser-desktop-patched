@@ -575,10 +575,12 @@ var SidebarUI = {
 
     this._box.style.marginLeft = `${-Math.abs(this._box.getBoundingClientRect().width)}px`
 
+    let animationsDisabled = Services.prefs.getBoolPref("sidebar.animations.disabled");
+
     setTimeout(() => {
       this._box.hidden = this._splitter.hidden = true;
       this._iconBar.hidden = this._splitter.hidden = true;
-    }, 170);
+    }, animationsDisabled ? 0 : 170);
 
     // Replace the document currently displayed in the sidebar with about:blank
     // so that we can free memory by unloading the page. We need to explicitly

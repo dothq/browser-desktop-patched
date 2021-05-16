@@ -9764,6 +9764,16 @@
   mirror: always
 
 #---------------------------------------------------------------------------
+# Prefs starting with "sidebar."
+#---------------------------------------------------------------------------
+
+# Force animations on the sidebar to be disabled
+- name: sidebar.animations.disabled
+  type: bool
+  value: false
+  mirror: always
+
+#---------------------------------------------------------------------------
 # Prefs starting with "slider."
 #---------------------------------------------------------------------------
 
