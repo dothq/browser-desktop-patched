@@ -53,6 +53,7 @@ DIRS += [
     "search",
     "sessionstore",
     "shell",
+    "sidebars",
     "syncedtabs",
     "uitour",
     "urlbar",
