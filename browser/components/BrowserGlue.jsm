@@ -534,22 +534,19 @@ let JSWINDOWACTORS = {
       moduleURI: "resource:///actors/LightweightThemeChild.jsm",
       events: {
         pageshow: { mozSystemGroup: true },
-        DOMWindowCreated: {},
-        click: {},
+        DOMContentLoaded: { mozSystemGroup: true },
       },
     },
     includeChrome: true,
     allFrames: true,
-    remoteTypes: ["privilegedabout"],
     matches: [
-      "about:*",
-      "about:certerror?*",
-      "about:neterror?*",
-      "chrome://browser/content/abouthistory/aboutHistory.xhtml",
-      "chrome://browser/content/preferences/new/newpreferences.html",
+      "about:home",
+      "about:newtab",
+      "about:welcome",
       "chrome://browser/content/syncedtabs/sidebar.xhtml",
       "chrome://browser/content/places/historySidebar.xhtml",
       "chrome://browser/content/places/bookmarksSidebar.xhtml",
+      "chrome://browser/content/sidebars/bookmarks/sidebar.html"
     ],
   },
 

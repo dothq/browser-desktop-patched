@@ -177,7 +177,7 @@ const ThemeVariableMap = [
     "--sidebar-highlight-color",
     {
       lwtProperty: "sidebar_highlight",
-      optionalElementID: "sidebar-iconbar",
+      optionalElementID: "browser",
     },
   ],
 ];

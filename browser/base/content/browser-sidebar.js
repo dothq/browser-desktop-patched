@@ -16,7 +16,7 @@ var SidebarUI = {
         {
           title: document.getElementById("sidebar-switcher-bookmarks")
             .getAttribute("label"),
-          url: "chrome://browser/content/places/bookmarksSidebar.xhtml",
+          url: "chrome://browser/content/sidebars/bookmarks/sidebar.html",
           menuId: "menu_bookmarksSidebar",
           buttonId: "sidebar-switcher-bookmarks",
         },
