@@ -772,6 +772,8 @@ var gIdentityHandler = {
     let icon_label = "";
     let tooltip = "";
 
+    this._identityIconLabel.removeAttribute("hidden");
+
     if (this._isSecureInternalUI) {
       // This is a secure internal Firefox page.
       this._identityBox.className = "chromeUI";

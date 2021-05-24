@@ -622,10 +622,10 @@ class UrlbarView {
       this.oneOffSearchButtons.enable(
         (firstResult.providerName != "UrlbarProviderSearchTips" ||
           queryContext.trimmedSearchString) &&
-          queryContext.trimmedSearchString[0] != "@" &&
-          (queryContext.trimmedSearchString[0] !=
-            UrlbarTokenizer.RESTRICT.SEARCH ||
-            queryContext.trimmedSearchString.length != 1)
+        queryContext.trimmedSearchString[0] != "@" &&
+        (queryContext.trimmedSearchString[0] !=
+          UrlbarTokenizer.RESTRICT.SEARCH ||
+          queryContext.trimmedSearchString.length != 1)
       );
     }
 
@@ -872,8 +872,8 @@ class UrlbarView {
   _resultIsSearchSuggestion(result) {
     return Boolean(
       result &&
-        result.type == UrlbarUtils.RESULT_TYPE.SEARCH &&
-        result.payload.suggestion
+      result.type == UrlbarUtils.RESULT_TYPE.SEARCH &&
+      result.payload.suggestion
     );
   }
 
@@ -1172,9 +1172,9 @@ class UrlbarView {
     let needsNewContent =
       oldResultType === undefined ||
       (oldResultType == UrlbarUtils.RESULT_TYPE.TIP) !=
-        (result.type == UrlbarUtils.RESULT_TYPE.TIP) ||
+      (result.type == UrlbarUtils.RESULT_TYPE.TIP) ||
       (oldResultType == UrlbarUtils.RESULT_TYPE.DYNAMIC) !=
-        (result.type == UrlbarUtils.RESULT_TYPE.DYNAMIC) ||
+      (result.type == UrlbarUtils.RESULT_TYPE.DYNAMIC) ||
       (oldResultType == UrlbarUtils.RESULT_TYPE.DYNAMIC &&
         result.type == UrlbarUtils.RESULT_TYPE.DYNAMIC &&
         oldResult.dynamicType != result.dynamicType) ||
@@ -1382,9 +1382,16 @@ class UrlbarView {
     let url = item._elements.get("url");
     if (setURL) {
       item.setAttribute("has-url", "true");
+
+      var needsToBeTrimmed =
+        result.payload.displayUrl.startsWith("http://") ||
+        result.payload.displayUrl.startsWith("https://");
+
       this._addTextContentWithHighlights(
         url,
-        result.payload.displayUrl,
+        needsToBeTrimmed
+          ? Services.io.newURI(result.payload.displayUrl).host
+          : result.payload.displayUrl,
         result.payloadHighlights.displayUrl || []
       );
       url._tooltip = result.payload.displayUrl;
