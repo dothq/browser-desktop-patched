@@ -197,6 +197,13 @@ AboutRedirector::NewChannel(nsIURI* aURI, nsILoadInfo* aLoadInfo,
         NS_ENSURE_SUCCESS(rv, rv);
       }
 
+      if (
+        path.EqualsLiteral("preferences") && 
+        Preferences::GetBool("browser.preferences.webuiexperience.enabled", true)
+      ) {
+        url.AssignASCII("chrome://browser/content/preferences/new/newpreferences.html");
+      }
+
       // fall back to the specified url in the map
       if (url.IsEmpty()) {
         url.AssignASCII(redir.url);

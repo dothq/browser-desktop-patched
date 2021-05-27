@@ -543,10 +543,12 @@ let JSWINDOWACTORS = {
       "about:home",
       "about:newtab",
       "about:welcome",
+      "about:preferences",
       "chrome://browser/content/syncedtabs/sidebar.xhtml",
       "chrome://browser/content/places/historySidebar.xhtml",
       "chrome://browser/content/places/bookmarksSidebar.xhtml",
-      "chrome://browser/content/sidebars/bookmarks/sidebar.html"
+      "chrome://browser/content/sidebars/bookmarks/sidebar.html",
+      "chrome://browser/content/preferences/new/newpreferences.html"
     ],
   },
 

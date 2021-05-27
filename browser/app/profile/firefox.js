@@ -2638,3 +2638,6 @@ pref("sidebar.pinned", false);
 pref("sidebar.selected", "");
 pref("sidebar.startItems", "");
 pref("sidebar.endItems", "");
+
+// Experiments
+pref("browser.preferences.webuiexperience.enabled", false);

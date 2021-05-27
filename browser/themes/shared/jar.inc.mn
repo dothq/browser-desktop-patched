@@ -46,6 +46,8 @@
   skin/classic/browser/customizableui/menu-arrow.svg           (../shared/customizableui/menu-arrow.svg)
   skin/classic/browser/customizableui/whimsy.png               (../shared/customizableui/whimsy.png)
   skin/classic/browser/dotui/sidebar.css                       (../shared/dotui/sidebar.css)
+  skin/classic/browser/dotui/webui/common.css                  (../shared/dotui/webui/common.css)
+  skin/classic/browser/dotui/webui/settings.css                  (../shared/dotui/webui/settings.css)
   skin/classic/browser/downloads/contentAreaDownloadsView.css  (../shared/downloads/contentAreaDownloadsView.css)
   skin/classic/browser/downloads/download-blocked.svg          (../shared/downloads/download-blocked.svg)
   skin/classic/browser/downloads/download-summary.svg          (../shared/downloads/download-summary.svg)
