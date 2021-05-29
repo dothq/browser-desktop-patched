@@ -3,5 +3,4 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 browser.jar:
-   content/browser/preferences/new/newpreferences.js
-   content/browser/preferences/new/newpreferences.html
+   content/browser/preferences/new/dialogs/switchProfile.html
