@@ -4785,7 +4785,7 @@ void nsGlobalWindowOuter::MakeScriptDialogTitle(
         nsContentUtils::eCOMMON_DIALOG_PROPERTIES,
         "ScriptDlgNullPrincipalHeading", aOutTitle);
   } else {
-    nsresult rv = aSubjectPrincipal->GetExposablePrePath(prepath);
+    nsresult rv = aSubjectPrincipal->GetAsciiHost(prepath);
     if (NS_SUCCEEDED(rv) && !prepath.IsEmpty()) {
       NS_ConvertUTF8toUTF16 ucsPrePath(prepath);
       nsContentUtils::FormatLocalizedString(
@@ -4870,6 +4870,8 @@ bool nsGlobalWindowOuter::AlertOrConfirm(bool aAlert, const nsAString& aMessage,
     // Just silently return.  In the case of alert(), the return value is
     // ignored.  In the case of confirm(), returning false is the same thing as
     // would happen if the user cancels.
+    uint8_t artificialDelay = rand() % 2000 + 200;
+    PR_Sleep(PR_MillisecondsToInterval(artificialDelay));
     return false;
   }
 

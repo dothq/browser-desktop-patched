@@ -3008,8 +3008,9 @@ BrowserGlue.prototype = {
       : null;
 
     // buttonPressed will be 0 for closing, 1 for cancel (don't close/quit)
-    let buttonPressed = Services.prompt.confirmEx(
-      win,
+    let buttonPressed = Services.prompt.confirmExBC(
+      win.gBrowser.selectedBrowser.browsingContext,
+      Services.prompt.MODAL_TYPE_CONTENT,
       gTabbrowserBundle.GetStringFromName(titleId),
       warningMessage,
       flags,

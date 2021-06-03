@@ -11,5 +11,14 @@ sidebar-menu-history =
 sidebar-menu-synced-tabs =
   .label = Synced Tabs
 
+sidebar-menu-accounts =
+  .label = Accounts
+
+sidebar-menu-settings =
+  .tooltiptext = Settings
+
 sidebar-menu-close =
   .label = Close Sidebar
+
+sidebar-context-menu-remove-item =
+  .label = Remove Item from Sidebar

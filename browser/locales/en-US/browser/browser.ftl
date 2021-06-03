@@ -183,6 +183,8 @@ page-action-send-tabs-urlbar =
       [1] Send Tab to Device
      *[other] Send { $tabCount } Tabs to Device
   }
+page-action-qr-code-panel =
+  .label = Generate QR Code for Page
 page-action-pocket-panel =
   .label = Save Page to { -pocket-brand-name }
 page-action-copy-url-panel =
@@ -283,6 +285,13 @@ bookmark-panel =
     .style = min-width: 23em
 
 ## Identity Panel
+
+identity-certificate-label = Certificate
+identity-certificate-issuer = Issued by: { $certIssuer }
+
+identity-cookie-label = Cookies
+
+identity-site-permissions-label = Site permissions
 
 identity-connection-not-secure = Connection not secure
 identity-connection-secure = Connection secure
@@ -467,6 +476,8 @@ urlbar-page-action-button =
   .tooltiptext = Page actions
 urlbar-pocket-button =
   .tooltiptext = Save to { -pocket-brand-name }
+urlbar-qr-code-button =
+  .tooltiptext = Generate QR Code for this Page
 
 ## Action text shown in urlbar results, usually appended after the search
 ## string or the url, like "result value - action text".
