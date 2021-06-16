@@ -203,6 +203,7 @@ var dataProviders = {
         " " +
         Services.sysinfo.getProperty("build"),
       version: AppConstants.MOZ_APP_VERSION_DISPLAY,
+      dotVersion: AppConstants.DOT_APP_VERSION,
       buildID: Services.appinfo.appBuildID,
       distributionID: Services.prefs
         .getDefaultBranch("")

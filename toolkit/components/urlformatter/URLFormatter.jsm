@@ -107,6 +107,9 @@ nsURLFormatterService.prototype = {
         "$1"
       );
     },
+    DOTVERSION() {
+      return AppConstants.DOT_APP_VERSION;
+    },
     APPBUILDID() {
       return Services.appinfo.appBuildID;
     },
@@ -121,6 +124,9 @@ nsURLFormatterService.prototype = {
     },
     OS() {
       return Services.appinfo.OS;
+    },
+    OSLOWER() {
+      return Services.appinfo.OS.toLowerCase();
     },
     XPCOMABI() {
       return this.ABI;

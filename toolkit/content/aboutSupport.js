@@ -95,7 +95,7 @@ var snapshotFormatters = {
       Ci.nsIFile
     ).path;
     $("supportLink").href = data.supportURL;
-    let version = AppConstants.MOZ_APP_VERSION_DISPLAY;
+    let version = AppConstants.DOT_APP_VERSION;
     if (data.vendor) {
       version += " (" + data.vendor + ")";
     }

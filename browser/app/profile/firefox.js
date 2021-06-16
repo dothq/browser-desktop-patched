@@ -2543,7 +2543,7 @@ pref("app.normandy.test-prefs.string", "");
 pref("general.autoScroll", true);
 pref("browser.preferences.experimental.hidden", true);
 pref("browser.preferences.experimental", false);
-pref("app.feedback.baseURL", "https://services.dothq.co/feedback/send?product=dot&version=%VERSION%&channel=unknown");
+pref("app.feedback.baseURL", "https://services.dothq.co/feedback/send?product=dot&version=%DOTVERSION%&channel=unknown");
 
 // Network
 pref("dom.security.https_only_mode", true); // Enable HTTPS-only mode
@@ -2641,3 +2641,6 @@ pref("sidebar.endItems", "");
 
 // Experiments
 pref("browser.preferences.webuiexperience.enabled", false);
+
+// Support Links
+pref("app.support.baseURL", "https://support.dothq.co/%LOCALE%/desktop/%OSLOWER%/%DOTVERSION%/");
