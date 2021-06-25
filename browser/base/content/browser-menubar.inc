@@ -159,20 +159,20 @@
                 <menu id="viewSidebarMenuMenu" data-l10n-id="menu-view-sidebar">
                   <menupopup id="viewSidebarMenu">
                     <menuitem id="menu_bookmarksSidebar"
-                              type="checkbox"
+                              type="radio"
                               key="viewBookmarksSidebarKb"
                               oncommand="SidebarUI.toggle('viewBookmarksSidebar');" data-l10n-id="menu-view-bookmarks"/>
                     <menuitem id="menu_historySidebar"
-                              type="checkbox"
+                              type="radio"
                               key="key_gotoHistory"
                               oncommand="SidebarUI.toggle('viewHistorySidebar');" data-l10n-id="menu-view-history-button"/>
                     <menuitem id="menu_tabsSidebar"
-                              type="checkbox"
+                              type="radio"
                               class="sync-ui-item"
                               oncommand="SidebarUI.toggle('viewTabsSidebar');" data-l10n-id="menu-view-synced-tabs-sidebar"/>
                     <menuitem id="menu_accountsSidebar"
-                              type="checkbox"
-                              oncommand="SidebarUI.toggle('viewAccountsSidebar');" data-l10n-id="menu-view-accounts"/>
+                              type="radio"
+                              oncommand="SidebarUI.toggle('viewAccountsSidebar');" data-l10n-id="menu-view-accounts-button"/>
                   </menupopup>
                 </menu>
                 <menuseparator/>

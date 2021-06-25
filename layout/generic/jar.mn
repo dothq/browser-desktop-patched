@@ -4,4 +4,5 @@
 
 toolkit.jar:
    res/broken-image.png                (broken-image.png)
+   res/broken-image.svg                (broken-image.svg)
    res/loading-image.png               (loading-image.png)

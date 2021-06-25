@@ -26,6 +26,11 @@ html|textarea {
   font: inherit;
 }
 
+::selection {
+  background-color: var(--dot-accent-color, #1662D3);
+  color: white;
+}
+
 /* Textbox context menu */
 
 .textbox-contextmenu:-moz-locale-dir(rtl) {

@@ -2547,7 +2547,7 @@ nsresult nsImageFrame::LoadIcons(nsPresContext* aPresContext) {
   NS_ASSERTION(!gIconLoad, "called LoadIcons twice");
 
   constexpr auto loadingSrc = u"resource://gre-resources/loading-image.png"_ns;
-  constexpr auto brokenSrc = u"resource://gre-resources/broken-image.png"_ns;
+  constexpr auto brokenSrc = u"resource://gre-resources/broken-image.svg"_ns;
 
   gIconLoad = new IconLoad();
 
