@@ -70,6 +70,7 @@
 #include "nsComponentManagerUtils.h"
 #include "nsICookieManager.h"
 #include "nsICookieService.h"
+#include "nsIRandomGenerator.h"
 #include "nsIHttpChannel.h"
 #include "nsStreamUtils.h"
 #include "WidgetUtils.h"
@@ -112,6 +113,12 @@
 #include "mozilla/dom/WindowGlobalChild.h"
 
 #include "mozilla/intl/LocaleService.h"
+
+#include "mozilla/Logging.h"
+
+using mozilla::LogLevel;
+
+static mozilla::LazyLogModule sLogger("navigator");
 
 namespace mozilla::dom {
 
@@ -454,7 +461,24 @@ void Navigator::GetOscpu(nsAString& aOSCPU, CallerType aCallerType,
   CopyASCIItoUTF16(oscpu, aOSCPU);
 }
 
-void Navigator::GetVendor(nsAString& aVendor) { aVendor.Truncate(); }
+void Navigator::GetVendor(nsAString& aVendor) {
+  aVendor.Truncate();
+
+  if (MOZ_LIKELY(StaticPrefs::privacy_resistFingerprinting_randomVendor())) {
+    // Create the random generator
+    nsCOMPtr<nsIRandomGenerator> rg =
+        do_GetService("@mozilla.org/security/random-generator;1");
+
+    // Create a temporary variable for the random vendor
+    unsigned char* randomBytes;
+    // Fills it with random characters
+    rg->GenerateRandomBytes(16, &randomBytes);
+    // sends that to the vendor string
+    aVendor.AppendASCII(reinterpret_cast<const char*>(randomBytes));
+  }
+
+  printf("Navigator:GetVendor called \n");
+}
 
 void Navigator::GetVendorSub(nsAString& aVendorSub) { aVendorSub.Truncate(); }
 

@@ -2065,7 +2065,7 @@ uint32_t RuntimeService::ClampedHardwareConcurrency() const {
   // The Firefox Hardware Report says 70% of Firefox users have exactly 2 cores.
   // When the resistFingerprinting pref is set, we want to blend into the crowd
   // so spoof navigator.hardwareConcurrency = 2 to reduce user uniqueness.
-  if (MOZ_UNLIKELY(nsContentUtils::ShouldResistFingerprinting())) {
+  if (MOZ_LIKELY(nsContentUtils::ShouldResistFingerprinting())) {
     // The goal of Dot's anti-fingerprinting is to make the data used to create
     // a fingerprint unstable. Therefore, we want to generate a random number to
     // use as hardwareConcurrency. As more modern, higher-core hardware comes
