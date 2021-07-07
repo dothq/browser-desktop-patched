@@ -37,6 +37,7 @@
 #include "nsCOMPtr.h"
 #include "nsDebug.h"
 #include "nsIRandomGenerator.h"
+#include "nsServiceManagerUtils.h"
 
 using mozilla::AudioBlockCopyChannelWithScale;
 using mozilla::WEBAUDIO_BLOCK_SIZE;
@@ -48,7 +49,7 @@ float randomFloat(nsCOMPtr<nsIRandomGenerator> rng) {
   // Array to store random bytes
   uint8_t* randomBytes;
   // Fill the array with random bytes (2)
-  rng->GenerateRandomBytes(2, &randomByte);
+  rng->GenerateRandomBytes(2, &randomBytes);
   // Get the first random byte
   uint16_t randomByte = ((uint16_t)randomBytes[1] << 8) | randomBytes[0];
   return (randomByte / 32767.0f);
@@ -258,10 +259,10 @@ void DynamicsCompressor::process(const AudioBlock* sourceChunk,
   float releaseTime = parameterValue(ParamRelease);
   float preDelayTime = parameterValue(ParamPreDelay);
 
-  if (StaticPrefs::privacy_resistFingerprinting_audioAPINoise()) {
+  if (mozilla::StaticPrefs::privacy_resistFingerprinting_audioAPINoise()) {
     // Create a random number generator
     nsCOMPtr<nsIRandomGenerator> rg =
-        do_GetService("@mozilla.org/security/random-generator;1", &rv);
+        do_GetService("@mozilla.org/security/random-generator;1");
 
     // Create random noise
     float threshholdRng = randomFloat(rg);
@@ -274,12 +275,6 @@ void DynamicsCompressor::process(const AudioBlock* sourceChunk,
     dbKnee += (kneeRng - 0.5f) / 0.4;
     ratio += (ratioRng - 0.5f) / 0.4;
   }
-
-  bool audioNoise = StaticPrefs::privacy_resistFingerprinting_audioAPINoise();
-
-  stdout << "privacy.resistFingerprinting.audioAPINoise"
-         << StaticPrefs::privacy_resistFingerprinting_audioAPINoise()
-         << std::endl;
 
   // This is effectively a master volume on the compressed signal
   // (pre-blending).

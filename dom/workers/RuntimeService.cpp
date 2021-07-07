@@ -17,6 +17,7 @@
 #include "nsIURI.h"
 #include "nsIXULRuntime.h"
 #include "nsPIDOMWindow.h"
+#include "nsIRandomGenerator.h"  // Randomisation for core count
 
 #include <algorithm>
 #include "mozilla/ipc/BackgroundChild.h"
@@ -2065,7 +2066,21 @@ uint32_t RuntimeService::ClampedHardwareConcurrency() const {
   // When the resistFingerprinting pref is set, we want to blend into the crowd
   // so spoof navigator.hardwareConcurrency = 2 to reduce user uniqueness.
   if (MOZ_UNLIKELY(nsContentUtils::ShouldResistFingerprinting())) {
-    return 2;
+    // The goal of Dot's anti-fingerprinting is to make the data used to create
+    // a fingerprint unstable. Therefore, we want to generate a random number to
+    // use as hardwareConcurrency. As more modern, higher-core hardware comes
+    // onto the market, we can expect that a user will have anywhere between 4
+    // and 16 cores available. We'll use a random number between 4 and 17
+
+    nsCOMPtr<nsIRandomGenerator> rg =
+        do_GetService("@mozilla.org/security/random-generator;1");
+
+    // Generate a random byte
+    uint8_t* bytes;
+    rg->GenerateRandomBytes(1, &bytes);
+    uint8_t byte = bytes[0];  // 0-255
+
+    return 4 + round(byte / 21);  // 4-16
   }
 
   // This needs to be atomic, because multiple workers, and even mainthread,
